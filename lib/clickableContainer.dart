@@ -9,7 +9,7 @@ class ClickableContainer extends StatefulWidget{
 
 class _ContainerState extends State<ClickableContainer>{
   double _size = 100;
-  bool _active = false;
+  final bool _active = false;
 
   @override
   Widget build(BuildContext context) {

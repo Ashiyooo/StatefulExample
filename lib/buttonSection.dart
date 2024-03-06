@@ -33,7 +33,7 @@ class StatefulButton extends StatefulWidget{
 
 class _StatefulButton extends State<StatefulButton>{
   bool _active = false;
-  Color _color = Colors.deepOrange;
+  final Color _color = Colors.deepOrange;
   final String setAlarm = 'Alarm Set';
   final String unsetAlarm = 'Alarm turned off';
   

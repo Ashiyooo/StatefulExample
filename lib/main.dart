@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gesture1/clickableContainer.dart';
 import 'package:gesture1/buttonSection.dart';
 import 'package:gesture1/textBody.dart';
 import 'title.dart';
@@ -43,12 +42,12 @@ class MainApp extends StatelessWidget {
               ]
             ),
             
-            TitleSection(
+            const TitleSection(
               name: 'CMSC 156', 
               location: 'CL4'
             ),
-            buttonSection(),
-            Padding(
+            const buttonSection(),
+            const Padding(
               padding: EdgeInsets.all(15.0), 
               child: TextBody(text: bodyOfText)
             ),
