@@ -12,9 +12,9 @@ class buttonSection extends StatelessWidget{
     return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        StatefulButton(),
+        StatefulButton(icon1: Icons.alarm_on, icon2: Icons.alarm_off, label1: 'Set Alarm', label2: 'Unset Alarm'),
         ButtonWithText(color: color, icon: Icons.near_me, label: 'Go'),
-        ButtonWithText(color: color, icon: Icons.pending_outlined, label: 'More'),
+        StatefulButton(icon1: Icons.pending_outlined, icon2: Icons.pending_rounded, label1: 'More', label2: 'More')
       ],
     );
     
@@ -22,9 +22,17 @@ class buttonSection extends StatelessWidget{
 }
 
 class StatefulButton extends StatefulWidget{
+  final IconData icon1;
+  final IconData icon2;
+  final String label1;
+  final String label2;
 
   const StatefulButton({
     super.key,
+    required this.icon1,
+    required this.icon2,
+    required this.label1,
+    required this.label2,
   });
 
   @override
@@ -32,32 +40,19 @@ class StatefulButton extends StatefulWidget{
 }
 
 class _StatefulButton extends State<StatefulButton>{
-  bool _active = false;
+  bool _active = true;
   final Color _color = Colors.deepOrange;
-  final String setAlarm = 'Alarm Set';
-  final String unsetAlarm = 'Alarm turned off';
-  
   
   @override
   Widget build(BuildContext context) {
     return IconButton(
-              onPressed: () {
-                final snackBar = SnackBar(
-                  content: _active? 
-                    Text(unsetAlarm):
-                    Text(setAlarm)
-                  );
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  setState(() {
-                    _active = !_active;
-                  });
-                }, 
+              onPressed: _handleTap,
               icon: (_active)?  
-                ButtonWithText(color: _color, icon: Icons.alarm_off_rounded, label: 'Turn off alarm'):
-                ButtonWithText(color: _color, icon: Icons.alarm_add, label: 'Set alarm'),
+                ButtonWithText(color: _color, icon: widget.icon1, label: widget.label1):
+                ButtonWithText(color: _color, icon: widget.icon2, label: widget.label2),
             );       
   }
-  //void _handleTap() => setState(() { _active = !_active;});
+  void _handleTap() => setState(() { _active = !_active;});
 }
 class ButtonWithText extends StatelessWidget{
   final Color color;

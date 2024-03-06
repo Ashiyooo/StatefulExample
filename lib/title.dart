@@ -37,15 +37,55 @@ class TitleSection extends StatelessWidget{
                 ]
               ),
             ),
-        Icon(
-          Icons.add_alert_outlined,
-          color: Colors.red[500],
-          ),
-        const Text(
-          '60 enrolled'
-          ),
+        FavoriteWidget(),
         ],
       )
     ); 
+  }
+}
+
+class FavoriteWidget extends StatefulWidget{
+  const FavoriteWidget({super.key});
+
+  @override
+  State<FavoriteWidget> createState() => _FavoriteWidgetState();
+}
+
+class _FavoriteWidgetState extends State<FavoriteWidget> {
+  Color _color = Colors.deepOrange;
+  bool _isClicked = false;
+  int _enrolledCount = 50;
+  
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(2.0),
+          child: IconButton(
+            padding: const EdgeInsets.all(0),
+            alignment: Alignment.centerRight,
+            icon: _isClicked? Icon(Icons.add_alert_outlined, color: _color): Icon(Icons.add_alert, color: _color),
+            onPressed: _toggleFavorite,
+            ),
+        ),
+        SizedBox(
+          width: 18,
+          child: Text('$_enrolledCount'),
+        )
+      ],
+    );
+  }
+
+  void _toggleFavorite() {
+    setState(() {
+      if(_isClicked){
+        _enrolledCount--;
+      } else {
+        _enrolledCount++;
+      }
+      _isClicked = !_isClicked;
+    });
   }
 }
