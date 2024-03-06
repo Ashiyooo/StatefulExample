@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gesture1/buttonSection.dart';
 import 'package:gesture1/clickableContainer.dart';
+import 'package:gesture1/enrolledModel.dart';
 import 'package:gesture1/textBody.dart';
+import 'package:provider/provider.dart';
 import 'title.dart';
 
 const String bodyOfText = """
@@ -9,7 +11,12 @@ This is a 3-unit course that will discuss programming technologies, design and d
 Understand, differentiate, and analyze the best approach in Mobile Development of either Native, Cross-platform, Hybrid-Web App, or Progressive Web-App for particular scenarios; Build cross-platform mobile applications; Deploy built mobile applications to App Stores;
 """;
 void main() {
-  runApp(const MainApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => EnrolledModel(),
+      child: const MainApp(),
+    )
+  );
 }
 
 class MainApp extends StatelessWidget {

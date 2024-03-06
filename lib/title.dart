@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gesture1/enrolledModel.dart';
+import 'package:provider/provider.dart';
 
 class TitleSection extends StatelessWidget{
   final String name;
@@ -54,37 +56,40 @@ class FavoriteWidget extends StatefulWidget{
 class _FavoriteWidgetState extends State<FavoriteWidget> {
   Color _color = Colors.deepOrange;
   bool _isClicked = false;
-  int _enrolledCount = 50;
   
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Container(
-          padding: const EdgeInsets.all(2.0),
-          child: IconButton(
-            padding: const EdgeInsets.all(0),
-            alignment: Alignment.centerRight,
-            icon: _isClicked? Icon(Icons.add_alert, color: _color): Icon(Icons.add_alert_outlined, color: _color),
-            onPressed: _toggleFavorite,
-            ),
-        ),
-        SizedBox(
-          width: 75,
-          child: Text('$_enrolledCount enrolled'),
-        )
-      ],
+    
+    return Consumer<EnrolledModel>(
+      builder: (context, value, child) => Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            padding: const EdgeInsets.all(2.0),
+            child: IconButton(
+              padding: const EdgeInsets.all(0),
+              alignment: Alignment.centerRight,
+              icon: _isClicked? Icon(Icons.add_alert, color: _color): Icon(Icons.add_alert_outlined, color: _color),
+              onPressed: _toggleFavorite,
+              ),
+          ),
+          SizedBox(
+            width: 75,
+            child: Text('${value.count} enrolled'),
+          )
+        ],
+      ),
     );
   }
 
   void _toggleFavorite() {
     setState(() {
+      final model = context.read<EnrolledModel>();
       if(_isClicked){
-        _enrolledCount--;
+        model.decrement();
         _isClicked = false;
       } else {
-        _enrolledCount++;
+        model.increment();
         _isClicked = true;
       }
       
