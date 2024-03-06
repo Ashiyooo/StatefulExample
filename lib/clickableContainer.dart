@@ -9,7 +9,7 @@ class ClickableContainer extends StatefulWidget{
 
 class _ContainerState extends State<ClickableContainer>{
   double _size = 100;
-  final bool _active = false;
+  bool _active = false;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class _ContainerState extends State<ClickableContainer>{
   }
 
   void _changeColor(bool newValue) {
-    setState(() => newValue);
+    setState(() => _active = newValue);
   }
 }
 
