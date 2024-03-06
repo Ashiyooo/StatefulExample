@@ -37,7 +37,7 @@ class TitleSection extends StatelessWidget{
                 ]
               ),
             ),
-        FavoriteWidget(),
+        const FavoriteWidget(),
         ],
       )
     ); 
@@ -66,13 +66,13 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
           child: IconButton(
             padding: const EdgeInsets.all(0),
             alignment: Alignment.centerRight,
-            icon: _isClicked? Icon(Icons.add_alert_outlined, color: _color): Icon(Icons.add_alert, color: _color),
+            icon: _isClicked? Icon(Icons.add_alert, color: _color): Icon(Icons.add_alert_outlined, color: _color),
             onPressed: _toggleFavorite,
             ),
         ),
         SizedBox(
-          width: 18,
-          child: Text('$_enrolledCount'),
+          width: 75,
+          child: Text('$_enrolledCount enrolled'),
         )
       ],
     );
@@ -82,10 +82,12 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
     setState(() {
       if(_isClicked){
         _enrolledCount--;
+        _isClicked = false;
       } else {
         _enrolledCount++;
+        _isClicked = true;
       }
-      _isClicked = !_isClicked;
+      
     });
   }
 }

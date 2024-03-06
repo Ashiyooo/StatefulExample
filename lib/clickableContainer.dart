@@ -57,7 +57,6 @@ class ChangeableBox extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return GestureDetector(
       onTap: _handleTap,
       child: Container(

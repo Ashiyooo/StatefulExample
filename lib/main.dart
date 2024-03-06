@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gesture1/buttonSection.dart';
+import 'package:gesture1/clickableContainer.dart';
 import 'package:gesture1/textBody.dart';
 import 'title.dart';
 
@@ -29,30 +30,32 @@ class MainApp extends StatelessWidget {
           centerTitle: true,
           backgroundColor: Colors.black,
         ),
-        body: Column(
-          children: <Widget>[
-            Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    height: 200,
-                    color: Colors.deepOrange,
+        body: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      height: 200,
+                      color: Colors.deepOrange,
+                    ),
                   ),
-                ),
-              ]
-            ),
-            
-            const TitleSection(
-              name: 'CMSC 156', 
-              location: 'CL4'
-            ),
-            const buttonSection(),
-            const Padding(
-              padding: EdgeInsets.all(15.0), 
-              child: TextBody(text: bodyOfText)
-            ),
-            //ClickableContainer(),
-          ],
+                ]
+              ),
+              
+              const TitleSection(
+                name: 'CMSC 156', 
+                location: 'CL4'
+              ),
+              const buttonSection(),
+              const Padding(
+                padding: EdgeInsets.all(15.0), 
+                child: TextBody(text: bodyOfText)
+              ),
+              ClickableContainer(),
+            ],
+          ),
         ),
       ),
     );
